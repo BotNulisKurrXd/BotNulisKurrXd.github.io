@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bot Nulis</title>
+<link rel="icon" type="image/png" href="https://telegra.ph/file/5e0c58f71f17bcdf6d749.png">
+<link rel="stylesheet" type="text/css" href="style1.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5022702609186380" crossorigin="anonymous"></script>
+
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5022702609186380" data-ad-slot="3450619604" data-ad-format="auto" data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</head>
+<body>
+<header>
+<p class="text-center text-muted">SUPPORT  <a target="_blank" href="https://youtube.com/KurrXd">KurrXd</a></p>
+<h1>BOT NULIS ONLINE BY KURRXD</h1>
+</header>
+<div class="main">
+<div class="tulis"><textarea id="buku"></textarea>
+<center>
+<button type="submit" onclick="botnulis()" id='button'>Mulai Nulis</button>
+<button type="submit" onClick="document.location.reload(true)">Reset Ulang</button>
+</center>
+</div>
+<script>
+
+		function reloadpage(){location.reload()}
+
+        function botnulis() {
+            var xhr = new XMLHttpRequest();
+            var tulisan = encodeURIComponent(document.getElementById("buku").value);
+            var url = "https://tools.zone-xsec.com/api/nulis.php?q="+tulisan;
+            xhr.onloadstart = function () {
+                document.getElementById("button").innerHTML = "Loading...";}
+            xhr.onerror = function () {
+                alert("Gagal Terhubung Ke Api");
+            };
+            xhr.onloadend = function () {
+                if (this.responseText !== "") {
+                    var data = JSON.parse(this.responseText);
+                    var img = document.createElement("img");
+		    img.setAttribute("width", "304");
+                    img.src = data.image;
+                    var name = document.createElement("h3");
+                    name.innerHTML = data.status;
+                  if (data.status == 'Error'){
+                     alert('Error');
+                     alert('Harap masukan input dengan benar!');
+                  }else{
+                    document.getElementById("xsec").append(img);
+
+                    setTimeout(function () {
+                        document.getElementById("button").innerHTML = "Buat Lagi";
+                    }, 3000);
+                  }
+                }
+            };
+            xhr.open("GET", url, true);
+            xhr.send();
+        }
+
+        function clearResult() {
+            document.getElementById("xsec").innerHTML = "";
+        }
+    </script>
+<div class="hasil">
+<div class="hasil2">
+
+<div class="tile-body" id="xsec"></div>
+
+</div>
+</div>
+<div id="coba"></div>
+</body>
+</html>
